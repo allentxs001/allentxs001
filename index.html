@@ -50,26 +50,61 @@ const SETTINGS = Object.freeze({
   CLIENT_ID: '714018109617-gev7uh405qjunm3el5503bdu82r1fgqm.apps.googleusercontent.com',
   APPS_SCRIPT_EXEC: 'https://script.google.com/macros/s/AKfycbw53IiBNoW1csW-jrHa0a1v41-3x8WpuiZyjCnhn58kujOXqcf6rN3s9No0V9-mLX3R/exec'
 });
-let challenge = '', challengeTimer = 0, busy = false;
+let challenge = '', busy = false;
 const statusEl = document.getElementById('status');
+const MAX_CHALLENGE_ATTEMPTS = 3;
+const CHALLENGE_TIMEOUT_MS = 12000;
+let challengeAttempt = 0, challengeTimer = 0, challengeScript = null, challengeReady = false;
 function status(message, isError=false){statusEl.textContent=message;statusEl.className=isError?'error':'';}
 function fail(message){busy=false;status(message,true);}
+function clearChallengeRequest(){
+ clearTimeout(challengeTimer);
+ challengeTimer=0;
+ if(challengeScript){challengeScript.onload=null;challengeScript.onerror=null;challengeScript.remove();challengeScript=null;}
+}
+function retryChallenge(reason){
+ if(challengeReady)return;
+ clearChallengeRequest();
+ if(challengeAttempt>=MAX_CHALLENGE_ATTEMPTS){
+  // No email or credential has been submitted at this stage.
+  fail('Your browser can open Apps Script, but could not load its sign-in response inside this page. Try reloading, turning off content blockers for this site, or opening it in a private tab. ('+reason+')');
+  return;
+ }
+ status('Connecting to Coordinator Desk — retry '+(challengeAttempt+1)+' of '+MAX_CHALLENGE_ATTEMPTS+'…');
+ setTimeout(requestChallenge, 600*challengeAttempt);
+}
+function requestChallenge(){
+ if(challengeReady)return;
+ challengeAttempt++;
+ const attempt=challengeAttempt;
+ const script=document.createElement('script');
+ challengeScript=script;
+ // Cache-busting is only for the public, read-only nonce endpoint. Never put credentials in URLs.
+ script.src=SETTINGS.APPS_SCRIPT_EXEC+'?mode=challenge&login_request='+Date.now()+'-'+attempt;
+ script.async=true;
+ script.onerror=()=>{if(!challengeReady&&attempt===challengeAttempt)retryChallenge('script request failed');};
+ script.onload=()=>{
+  // The browser can load a script without executing the expected callback; detect that case.
+  if(!challengeReady&&attempt===challengeAttempt)
+   setTimeout(()=>{if(!challengeReady&&attempt===challengeAttempt)retryChallenge('callback not received');},700);
+ };
+ challengeTimer=setTimeout(()=>{if(!challengeReady&&attempt===challengeAttempt)retryChallenge('request timed out');},CHALLENGE_TIMEOUT_MS);
+ document.head.appendChild(script);
+}
 function start(){
  if(!/^\d+-[\w-]+\.apps\.googleusercontent\.com$/.test(SETTINGS.CLIENT_ID) ||
     !/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(SETTINGS.APPS_SCRIPT_EXEC)){
   fail('The login page is not configured. Contact the portal administrator.');return;
  }
- const script=document.createElement('script');
- script.src=SETTINGS.APPS_SCRIPT_EXEC+'?mode=challenge';
- script.onerror=()=>{clearTimeout(challengeTimer);fail('Unable to contact Coordinator Desk. Please reload this login page.');};
- document.head.append(script);
- challengeTimer=setTimeout(()=>fail('Sign-in request timed out. Reload this login page.'),15000);
+ requestChallenge();
 }
 window.cpReceiveChallenge = function(payload){
- clearTimeout(challengeTimer);
+ if(challengeReady)return;
  if(!payload||payload.ok!==true||!/^[0-9a-f-]{36}$/.test(payload.challenge||'')){
-  fail('Unable to start sign-in. Reload this login page.');return;
+  retryChallenge('invalid challenge response');return;
  }
+ challengeReady=true;
+ clearChallengeRequest();
  challenge=payload.challenge;
  let attempts=0;
  function loadGoogle(){
