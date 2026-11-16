@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -5,182 +6,414 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta name="theme-color" content="#142c4b">
+
   <title>Coordinator Desk · Allen TX (S) 001 · Sign in</title>
   <link rel="icon" type="image/png" href="./allen-2027-badge.png">
+
   <script src="https://accounts.google.com/gsi/client" async defer></script>
+
   <style>
-    :root {color-scheme:light;--navy:#142c4b;--ink:#17283b;--muted:#60738a;--line:#dbe4ef;--blue:#265b91}
-    * {box-sizing:border-box}
-    body {margin:0;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Arial,sans-serif;color:var(--ink);background:linear-gradient(155deg,#f4f8fc 10%,#e8f1fb 100%)}
-    main {min-height:100svh;display:grid;place-items:center;padding:22px}
-    .card {width:min(94vw,450px);border-radius:21px;background:#fff;border:1px solid var(--line);box-shadow:0 18px 50px #14385d18;padding:28px 31px 26px}
-    .brand {display:flex;flex-direction:column;align-items:center;gap:11px;text-align:center;border-bottom:1px solid var(--line);padding-bottom:18px}
-    .brand img {display:block;width:min(80%,235px);height:172px;object-fit:contain;flex:none}
-    .brand-name {font-weight:800;font-size:16px;line-height:1.25;color:var(--navy)}
-    .brand-sub {margin-top:4px;font-size:12px;color:var(--muted)}
-    h1 {font-size:24px;line-height:1.25;margin:24px 0 8px;letter-spacing:-.6px;color:var(--navy)}
-    p {margin:0 0 16px;color:var(--muted)}
-    .meta {font-size:11px;letter-spacing:.9px;text-transform:uppercase;color:#45678a;font-weight:800;margin-top:8px}
-    #status {font-size:13px;min-height:22px;margin:16px 0 8px;color:#45627d}
-    #status.error {background:#fff3f2;color:#ae291d;padding:12px;border-radius:9px;border:1px solid #f5d2ce}
-    #google {min-height:45px;margin:12px 0 12px}
-    .footer {font-size:12px;border-top:1px solid var(--line);padding-top:16px;color:var(--muted);margin-top:20px}
-    .retry {background:none;border:0;padding:0;color:var(--blue);text-decoration:underline;font:inherit;cursor:pointer}
-    @media(max-width:440px){.card{padding:22px}.brand img{height:144px}}
+    :root {
+      color-scheme: light;
+      --navy: #142c4b;
+      --ink: #17283b;
+      --muted: #60738a;
+      --line: #dbe4ef;
+      --blue: #265b91;
+    }
 
-    #openPortal {
-  display: block;
-  width: 100%;
-  padding: 13px 18px;
-  margin: 12px 0;
-  border: none;
-  border-radius: 10px;
-  background: #265b91;
-  color: #fff;
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
+    * { box-sizing: border-box; }
 
-#openPortal:hover {
-  background: #1b456f;
-}
+    body {
+      margin: 0;
+      font: 15px/1.5 system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(155deg, #f4f8fc 10%, #e8f1fb 100%);
+    }
 
-#openPortal:focus-visible {
-  outline: 3px solid #8ebbe8;
-  outline-offset: 3px;
-}
-    
+    main {
+      min-height: 100svh;
+      display: grid;
+      place-items: center;
+      padding: 22px;
+    }
+
+    .card {
+      width: min(94vw, 450px);
+      border-radius: 21px;
+      background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 18px 50px #14385d18;
+      padding: 28px 31px 26px;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 11px;
+      text-align: center;
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 18px;
+    }
+
+    .brand img {
+      display: block;
+      width: min(80%, 235px);
+      height: 172px;
+      object-fit: contain;
+    }
+
+    .brand-name {
+      font-weight: 800;
+      font-size: 16px;
+      line-height: 1.25;
+      color: var(--navy);
+    }
+
+    .brand-sub {
+      margin-top: 4px;
+      font-size: 12px;
+      color: var(--muted);
+    }
+
+    h1 {
+      font-size: 24px;
+      line-height: 1.25;
+      margin: 24px 0 8px;
+      letter-spacing: -.6px;
+      color: var(--navy);
+    }
+
+    p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .meta {
+      font-size: 11px;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      color: #45678a;
+      font-weight: 800;
+      margin-top: 8px;
+    }
+
+    #status {
+      font-size: 13px;
+      min-height: 22px;
+      margin: 16px 0 8px;
+      color: #45627d;
+    }
+
+    #status.error {
+      background: #fff3f2;
+      color: #ae291d;
+      padding: 12px;
+      border-radius: 9px;
+      border: 1px solid #f5d2ce;
+    }
+
+    .signin-hint {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      margin: 12px 0;
+    }
+
+    #google {
+      min-height: 45px;
+      margin: 12px 0 16px;
+    }
+
+    .footer {
+      font-size: 12px;
+      border-top: 1px solid var(--line);
+      padding-top: 16px;
+      color: var(--muted);
+      margin-top: 20px;
+    }
+
+    @media (max-width: 440px) {
+      .card { padding: 22px; }
+      .brand img { height: 144px; }
+    }
   </style>
 </head>
+
 <body>
-<main><section class="card" aria-label="Sign in to Coordinator Desk">
-  <div class="brand">
-    <img src="./allen-2027-badge.png" width="180" height="160" alt="2027 Allen Español JW Convention badge">
-    <div><div class="brand-name">Convention Command Portal</div>
-      <div class="brand-sub">Allen TX (S) 001 · July 30–August 1, 2027</div></div>
-  </div>
-  <div class="meta">Approved committee access</div>
-  <h1>Welcome to the Coordinator's Desk</h1>
-  <p>Sign in with the Google account approved for your convention responsibilities.</p>
- 
+  <main>
+    <section class="card" aria-label="Sign in to Coordinator Desk">
 
-<p class="footer">Google verifies your identity. The portal separately checks your approved role before displaying convention information. If a browser refresh interrupts your session, return to this sign-in page.</p>
-</section></main>
-<script>
-'use strict';
-// Public identifiers only. Do not add client secrets, API keys, session tokens, or private information.
-const SETTINGS = Object.freeze({
-  CLIENT_ID: '714018109617-gev7uh405qjunm3el5503bdu82r1fgqm.apps.googleusercontent.com',
-  APPS_SCRIPT_EXEC: 'https://script.google.com/macros/s/AKfycbw53IiBNoW1csW-jrHa0a1v41-3x8WpuiZyjCnhn58kujOXqcf6rN3s9No0V9-mLX3R/exec'
-});
-  document.getElementById('openPortal').addEventListener(
-  'click',
-  () => {
-    window.location.assign(SETTINGS.APPS_SCRIPT_EXEC);
-  }
-);
-let challenge = '', busy = false;
-const statusEl = document.getElementById('status');
-const MAX_CHALLENGE_ATTEMPTS = 3;
-const CHALLENGE_TIMEOUT_MS = 12000;
-let challengeAttempt = 0, challengeTimer = 0, challengeScript = null, challengeReady = false;
-function status(message, isError=false){statusEl.textContent=message;statusEl.className=isError?'error':'';}
-function fail(message){busy=false;status(message,true);}
-function clearChallengeRequest(){
- clearTimeout(challengeTimer);
- challengeTimer=0;
- if(challengeScript){challengeScript.onload=null;challengeScript.onerror=null;challengeScript.remove();challengeScript=null;}
-}
-function retryChallenge(reason){
- if(challengeReady)return;
- clearChallengeRequest();
- if(challengeAttempt>=MAX_CHALLENGE_ATTEMPTS){
-  // No email or credential has been submitted at this stage.
-  fail('Your browser can open Apps Script, but could not load its sign-in response inside this page. Try reloading, turning off content blockers for this site, or opening it in a private tab. ('+reason+')');
-  return;
- }
- status('Connecting to Coordinator Desk — retry '+(challengeAttempt+1)+' of '+MAX_CHALLENGE_ATTEMPTS+'…');
- setTimeout(requestChallenge, 600*challengeAttempt);
-}
-function requestChallenge(){
- if(challengeReady)return;
- challengeAttempt++;
- const attempt=challengeAttempt;
- const script=document.createElement('script');
- challengeScript=script;
- // Cache-busting is only for the public, read-only nonce endpoint. Never put credentials in URLs.
- script.src=SETTINGS.APPS_SCRIPT_EXEC+'?mode=challenge&login_request='+Date.now()+'-'+attempt;
- script.async=true;
- script.onerror=()=>{if(!challengeReady&&attempt===challengeAttempt)retryChallenge('script request failed');};
- script.onload=()=>{
-  // The browser can load a script without executing the expected callback; detect that case.
-  if(!challengeReady&&attempt===challengeAttempt)
-   setTimeout(()=>{if(!challengeReady&&attempt===challengeAttempt)retryChallenge('callback not received');},700);
- };
- challengeTimer=setTimeout(()=>{if(!challengeReady&&attempt===challengeAttempt)retryChallenge('request timed out');},CHALLENGE_TIMEOUT_MS);
- document.head.appendChild(script);
-}
-function start(){
- if(!/^\d+-[\w-]+\.apps\.googleusercontent\.com$/.test(SETTINGS.CLIENT_ID) ||
-    !/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(SETTINGS.APPS_SCRIPT_EXEC)){
-  fail('The login page is not configured. Contact the portal administrator.');return;
- }
- requestChallenge();
-}
-window.cpReceiveChallenge = function(payload){
- if(challengeReady)return;
- if(!payload||payload.ok!==true||!/^[0-9a-f-]{36}$/.test(payload.challenge||'')){
-  retryChallenge('invalid challenge response');return;
- }
- challengeReady=true;
- clearChallengeRequest();
- challenge=payload.challenge;
- let attempts=0;
- function loadGoogle(){
-  if(!window.google?.accounts?.id){
-   if(++attempts>70){fail('Google sign-in could not load. Reload this page.');return;}
-   setTimeout(loadGoogle,200);return;
-  }
-  status('Choose your approved Google account.');
-google.accounts.id.initialize({
-  client_id: SETTINGS.CLIENT_ID,
-  nonce: challenge,
-  auto_select: false,
-  use_fedcm_for_button: true,
-  button_auto_select: true,
-  callback: submitCredential
-});
+      <div class="brand">
+        <img
+          src="./allen-2027-badge.png"
+          width="180"
+          height="160"
+          alt="2027 Allen Español JW Convention badge"
+        >
 
-google.accounts.id.renderButton(
-  document.getElementById('google'),
-  {
-    type: 'standard',
-    theme: 'filled_blue',
-    size: 'large',
-    text: 'signin_with',
-    shape: 'rectangular',
-    width: 350
-  }
-);
-  google.accounts.id.renderButton(document.getElementById('google'),{theme:'outline',size:'large',text:'continue_with',width:300});
- }
- loadGoogle();
-};
-function submitCredential(result){
- if(busy)return;
- if(!result?.credential||!challenge){fail('Google did not return a usable sign-in response. Reload this page.');return;}
- busy=true;
- status('Verifying your account and opening Coordinator Desk…');
- // Credentials are submitted to Apps Script via POST, not written to a URL.
- const form=document.createElement('form');form.method='POST';form.action=SETTINGS.APPS_SCRIPT_EXEC;form.style.display='none';
- for(const [name,value] of Object.entries({credential:result.credential,challenge})){
-  const input=document.createElement('input');input.type='hidden';input.name=name;input.value=value;form.appendChild(input);
- }
- document.body.appendChild(form);
- form.submit();
-}
-start();
-</script>
+        <div>
+          <div class="brand-name">Convention Command Portal</div>
+          <div class="brand-sub">
+            Allen TX (S) 001 · July 30–August 1, 2027
+          </div>
+        </div>
+      </div>
+
+      <div class="meta">Approved committee access</div>
+
+      <h1>Welcome to the Coordinator's Desk</h1>
+
+      <p>
+        Sign in with the Google account approved for your
+        convention responsibilities.
+      </p>
+
+      <div id="status" role="status" aria-live="polite">
+        Preparing secure Google sign-in…
+      </div>
+
+      <p class="signin-hint">
+        Click your Google account below to sign in.
+      </p>
+
+      <div id="google" aria-label="Sign in with Google"></div>
+
+      <p class="footer">
+        Google verifies your identity. The portal separately checks your
+        approved role before displaying convention information.
+        If your session expires, return to this sign-in page.
+      </p>
+
+    </section>
+  </main>
+
+  <script>
+    'use strict';
+
+    // Public identifiers only. Never place secrets or tokens here.
+    const SETTINGS = Object.freeze({
+      CLIENT_ID:
+        '714018109617-gev7uh405qjunm3el5503bdu82r1fgqm.apps.googleusercontent.com',
+      APPS_SCRIPT_EXEC:
+        'https://script.google.com/macros/s/AKfycbw53IiBNoW1csW-jrHa0a1v41-3x8WpuiZyjCnhn58kujOXqcf6rN3s9No0V9-mLX3R/exec'
+    });
+
+    let challenge = '';
+    let busy = false;
+    let challengeReady = false;
+    let challengeAttempt = 0;
+    let challengeTimer = 0;
+    let challengeScript = null;
+
+    const MAX_CHALLENGE_ATTEMPTS = 3;
+    const CHALLENGE_TIMEOUT_MS = 12000;
+    const statusEl = document.getElementById('status');
+
+    function status(message, isError = false) {
+      statusEl.textContent = message;
+      statusEl.className = isError ? 'error' : '';
+    }
+
+    function fail(message) {
+      busy = false;
+      status(message, true);
+    }
+
+    function clearChallengeRequest() {
+      clearTimeout(challengeTimer);
+      challengeTimer = 0;
+
+      if (challengeScript) {
+        challengeScript.onload = null;
+        challengeScript.onerror = null;
+        challengeScript.remove();
+        challengeScript = null;
+      }
+    }
+
+    function retryChallenge(reason) {
+      if (challengeReady) return;
+
+      clearChallengeRequest();
+
+      if (challengeAttempt >= MAX_CHALLENGE_ATTEMPTS) {
+        fail(
+          'Could not connect to the secure sign-in service. ' +
+          'Please reload the page or contact the portal administrator. ' +
+          '(' + reason + ')'
+        );
+        return;
+      }
+
+      status(
+        'Connecting to Coordinator Desk — retry ' +
+        (challengeAttempt + 1) +
+        ' of ' + MAX_CHALLENGE_ATTEMPTS + '…'
+      );
+
+      setTimeout(requestChallenge, 600 * challengeAttempt);
+    }
+
+    function requestChallenge() {
+      if (challengeReady) return;
+
+      challengeAttempt++;
+      const attempt = challengeAttempt;
+
+      const script = document.createElement('script');
+      challengeScript = script;
+
+      script.src =
+        SETTINGS.APPS_SCRIPT_EXEC +
+        '?mode=challenge&login_request=' +
+        Date.now() + '-' + attempt;
+
+      script.async = true;
+
+      script.onerror = () => {
+        if (!challengeReady && attempt === challengeAttempt) {
+          retryChallenge('script request failed');
+        }
+      };
+
+      script.onload = () => {
+        if (!challengeReady && attempt === challengeAttempt) {
+          setTimeout(() => {
+            if (!challengeReady && attempt === challengeAttempt) {
+              retryChallenge('callback not received');
+            }
+          }, 700);
+        }
+      };
+
+      challengeTimer = setTimeout(() => {
+        if (!challengeReady && attempt === challengeAttempt) {
+          retryChallenge('request timed out');
+        }
+      }, CHALLENGE_TIMEOUT_MS);
+
+      document.head.appendChild(script);
+    }
+
+    function start() {
+      const clientOK =
+        /^\d+-[\w-]+\.apps\.googleusercontent\.com$/
+          .test(SETTINGS.CLIENT_ID);
+
+      const scriptOK =
+        /^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/
+          .test(SETTINGS.APPS_SCRIPT_EXEC);
+
+      if (!clientOK || !scriptOK) {
+        fail('The login page is not configured.');
+        return;
+      }
+
+      requestChallenge();
+    }
+
+    // Receives a one-time server-issued challenge.
+    window.cpReceiveChallenge = function(payload) {
+      if (challengeReady) return;
+
+      if (
+        !payload ||
+        payload.ok !== true ||
+        !/^[0-9a-f-]{36}$/.test(payload.challenge || '')
+      ) {
+        retryChallenge('invalid challenge response');
+        return;
+      }
+
+      challengeReady = true;
+      clearChallengeRequest();
+      challenge = payload.challenge;
+
+      let attempts = 0;
+
+      function loadGoogle() {
+        if (!window.google?.accounts?.id) {
+          if (++attempts > 70) {
+            fail('Google sign-in could not load. Reload this page.');
+            return;
+          }
+
+          setTimeout(loadGoogle, 200);
+          return;
+        }
+
+        status('Choose your approved Google account.');
+
+        google.accounts.id.initialize({
+          client_id: SETTINGS.CLIENT_ID,
+          nonce: challenge,
+          auto_select: false,
+          use_fedcm_for_button: true,
+          button_auto_select: true,
+          callback: submitCredential
+        });
+
+        // One Google button only.
+        const container = document.getElementById('google');
+
+        const buttonWidth = Math.min(
+          350,
+          Math.max(220, container.clientWidth || 300)
+        );
+
+        google.accounts.id.renderButton(container, {
+          type: 'standard',
+          theme: 'filled_blue',
+          size: 'large',
+          text: 'signin_with',
+          shape: 'rectangular',
+          width: buttonWidth
+        });
+      }
+
+      loadGoogle();
+    };
+
+    function submitCredential(result) {
+      if (busy) return;
+
+      if (!result?.credential || !challenge) {
+        fail(
+          'Google did not return a valid sign-in response. ' +
+          'Reload this page.'
+        );
+        return;
+      }
+
+      busy = true;
+      status('Verifying your account and opening Coordinator Desk…');
+
+      // Send credentials by POST, never in a URL.
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = SETTINGS.APPS_SCRIPT_EXEC;
+      form.style.display = 'none';
+
+      const values = {
+        credential: result.credential,
+        challenge: challenge
+      };
+
+      for (const [name, value] of Object.entries(values)) {
+        const input = document.createElement('input');
+        input.type = 'hidden';
+        input.name = name;
+        input.value = value;
+        form.appendChild(input);
+      }
+
+      document.body.appendChild(form);
+      form.submit();
+    }
+
+    start();
+  </script>
 </body>
 </html>
