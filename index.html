@@ -113,7 +113,14 @@ window.cpReceiveChallenge = function(payload){
    setTimeout(loadGoogle,200);return;
   }
   status('Choose your approved Google account.');
-  google.accounts.id.initialize({client_id:SETTINGS.CLIENT_ID,nonce:challenge,auto_select:false,callback:submitCredential});
+  google.accounts.id.initialize({
+  client_id: SETTINGS.CLIENT_ID,
+  nonce: challenge,
+  auto_select: false,
+  use_fedcm_for_button: true,
+  button_auto_select: true,
+  callback: submitCredential
+});
   google.accounts.id.renderButton(document.getElementById('google'),{theme:'outline',size:'large',text:'continue_with',width:300});
  }
  loadGoogle();
