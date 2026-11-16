@@ -39,9 +39,17 @@
   <div class="meta">Approved committee access</div>
   <h1>Welcome to the Coordinator's Desk</h1>
   <p>Sign in with the Google account approved for your convention responsibilities.</p>
-  <div id="status" role="status" aria-live="polite">Preparing secure Google sign-in…</div>
-  <div id="google" aria-label="Google sign-in button"></div>
-  <p class="footer">Google verifies your identity. The portal separately checks your approved role before displaying convention information. If a browser refresh interrupts your session, return to this sign-in page.</p>
+  <div id="status" role="status" aria-live="polite">
+  Preparing secure Google sign-in…
+</div>
+
+<button id="openPortal" type="button">
+  Open Coordinator's Desk →
+</button>
+
+<div id="google" aria-label="Google sign-in button"></div>
+
+<p class="footer">Google verifies your identity. The portal separately checks your approved role before displaying convention information. If a browser refresh interrupts your session, return to this sign-in page.</p>
 </section></main>
 <script>
 'use strict';
@@ -121,6 +129,12 @@ window.cpReceiveChallenge = function(payload){
   button_auto_select: true,
   callback: submitCredential
 });
+   document.getElementById('openPortal').addEventListener(
+  'click',
+  () => {
+    window.location.assign(SETTINGS.APPS_SCRIPT_EXEC);
+  }
+);
   google.accounts.id.renderButton(document.getElementById('google'),{theme:'outline',size:'large',text:'continue_with',width:300});
  }
  loadGoogle();
