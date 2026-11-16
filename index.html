@@ -82,6 +82,12 @@ const SETTINGS = Object.freeze({
   CLIENT_ID: '714018109617-gev7uh405qjunm3el5503bdu82r1fgqm.apps.googleusercontent.com',
   APPS_SCRIPT_EXEC: 'https://script.google.com/macros/s/AKfycbw53IiBNoW1csW-jrHa0a1v41-3x8WpuiZyjCnhn58kujOXqcf6rN3s9No0V9-mLX3R/exec'
 });
+  document.getElementById('openPortal').addEventListener(
+  'click',
+  () => {
+    window.location.assign(SETTINGS.APPS_SCRIPT_EXEC);
+  }
+);
 let challenge = '', busy = false;
 const statusEl = document.getElementById('status');
 const MAX_CHALLENGE_ATTEMPTS = 3;
@@ -153,10 +159,14 @@ window.cpReceiveChallenge = function(payload){
   button_auto_select: true,
   callback: submitCredential
 });
-   document.getElementById('openPortal').addEventListener(
-  'click',
-  () => {
-    window.location.assign(SETTINGS.APPS_SCRIPT_EXEC);
+
+google.accounts.id.renderButton(
+  document.getElementById('google'),
+  {
+    theme: 'outline',
+    size: 'large',
+    text: 'continue_with',
+    width: 300
   }
 );
   google.accounts.id.renderButton(document.getElementById('google'),{theme:'outline',size:'large',text:'continue_with',width:300});
